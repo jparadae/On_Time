@@ -1,0 +1,49 @@
+
+<div class="row #8bc34a light-green">
+	<div class="col s12 hide-on-med-and-down no-padding ">
+		<ul id="nav-mobile" class="side-nav fixed col s12 no-padding" style="left: 0px; top: 64px">
+
+<ul class="collapsible collapsible-accordion">
+						<li class="bold"><a href="https://www.optiitsoft.cl/" class="collapsible-header waves-effect"><i class="material-icons">reply_all</i> <span>Volver al Sitio</span></a>
+						</li>
+					</ul>
+
+
+
+
+
+			<li class="no-padding {% if menu == 'agenda' %}active{% endif %}">
+				<ul class="collapsible collapsible-accordion">
+					<li class="bold"><a href="{% url 'agenda' %}" class="collapsible-header waves-effect"><i class="material-icons">event</i> <span>On Time Cloud</span></a>
+					</li>
+				</ul>
+			</li>				
+			{% if user.is_authenticated %}
+				<li class="no-padding {% if menu == 'cargar' %}active{% endif %}">
+					<ul class="collapsible collapsible-accordion">
+						<li class="bold"><a href="{% url 'cargar' %}" class="collapsible-header waves-effect"><i class="material-icons">open_in_browser</i> <span>Cargar Disponibilidad</span></a>
+						</li>
+					</ul>
+				</li>
+				<li class="no-padding {% if menu == 'gestionar' %}active{% endif %}">
+					<ul class="collapsible collapsible-accordion">
+						<li class="bold"><a href="{% url 'gestionar' %}" class="collapsible-header waves-effect"><i class="material-icons">perm_contact_calendar</i> <span>Gestionar Reservas</span></a>
+						</li>
+					</ul>
+				</li>
+				<li class="no-padding {% if menu == 'historial' %}active{% endif %}">
+					<ul class="collapsible collapsible-accordion">
+						<li class="bold"><a href="{% url 'historial' %}" class="collapsible-header waves-effect"><i class="material-icons">content_paste</i> <span>Historial Agenda</span></a>
+						</li>
+					</ul>
+				</li>
+			    <li class="no-padding">
+					<ul class="collapsible collapsible-accordion">
+						<li class="bold"><a href="/admin/" class="collapsible-header waves-effect"><i class="material-icons">settings</i> <span>Panel Administración</span></a>
+						</li>
+					</ul>
+				</li>
+			{% endif %}
+		</ul>
+	</div>	
+</div>

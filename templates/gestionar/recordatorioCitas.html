@@ -1,0 +1,38 @@
+{% load staticfiles %}
+<div class="modal-body row croman">
+	
+	<div class="col s12 body">
+		<br>
+		<form action="{% url 'recordatorioCitas' %}" method="post" id="recordatorioCitas">
+			<br><br>
+			<h1>Citas</h1>
+			<div id="" class="croman2 col s12">
+				<table id="" class="bordered striped highlight" border="1">
+					<thead>
+						<tr>
+							<th data-field="id">#</th>
+							<th data-field="cliente">cliente</th>
+							<th data-field="profesional">profesional</th>
+							<th data-field="fecha_citacion">fecha_citacion</th>
+							<th data-field="hora_citacion">hora_citacion</th>
+							<th data-field="cupos">cupos</th>
+							<th data-field="es_cancelada">es_cancelada</th>
+					</thead>
+					<tbody>
+					{% for reserva in recordatorio %}
+							<tr data-ticket="{{ reserva.id }}">
+								<td>{{ reserva.id }}</td>
+								<td>{{ reserva.cliente }}</td>
+								<td>{{ reserva.profesional }}</td>
+								<td>{{ reserva.fecha_citacion }}</td>
+								<td>{{ reserva.hora_citacion }}</td>
+								<td>{{ reserva.cupos }}</td>
+								<td>{{ reserva.es_cancelada }}</td>
+							</tr>
+					{% endfor %}
+					</tbody>
+				</table>
+			</div>
+        </form>
+    </div>
+</div><!--

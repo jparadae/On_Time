@@ -1,0 +1,156 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block title %}Cargar On Time Cloud{% endblock %}
+
+{% block css %}
+
+{% endblock %}
+
+{% block contenido %}
+
+	<div class="row white" ng-app="appAgenda" ng-controller="CargarCitasCtrl">
+		<div class="col s12 m8 offset-m2">
+			<ul class="collapsible collapsible reservar" data-collapsible="expandable">
+				<li>
+					<div class="collapsible-header active #8bc34a light-green" data-step="1"><i class="material-icons">access_time</i> Cargar Horas Disponibles en On Time Cloud</div>
+					<div class="collapsible-body">
+						<form name="formStep1" ng-submit="submitCarga()" novalidate>
+							<div class="row">
+								<div class="col s12 m4">
+									<label>Módulo por Categoría</label>
+									<select name="establecimiento" class="browser-default" ng-model="form.cliente" required>
+										<option value="" disabled selected>Seleccionar...</option>
+
+										{% verbatim %}
+											<option ng-repeat="cliente in clientes" value="{{cliente.id}}">{{cliente.nombre}}</option>
+										{% endverbatim %}
+									</select>
+								</div>
+								<!--<div class="col s12 m4">
+									<label>Departamentos</label>
+									<select name="especialidad" class="default-browser" ng-model="form.especialidad" required>
+                                       <option value="" selected>Todos</option><!--Categorias-->
+                                        <!--<option value="Registro Social">Departamento de Registro Social de Hogares</option>
+                                        <option value="Subsidios" selected>Departamento de Subsidios</option>
+										 <option value="Discapacidad">Departamento de Discapacidad</option>
+                                        <option value="Ayudas" selected>Departamento Social, Subsidios Monetarios y Ayudas Sociales</option>
+										 <option value="Beneficios Especies">Departamento Social, Ayudas Sociales en especies o servicios</option>
+									</select> 
+								</div>-->
+								<div class="col s12 m4">
+									<label>Unidad Departamentos</label>
+									<select name="profesional" class="browser-default" ng-model="form.profesional" required>
+										<option value="" selected>Seleccionar...</option>
+										
+										{% verbatim %}
+											<option ng-repeat="profesional in profesionales | filterCustom: 'cliente.id': form.cliente" value="{{profesional.id}}">{{profesional.nombre}} {{profesional.apellidos}}</option>
+										{% endverbatim %}
+									</select>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col s12 m4">
+									<label>Fecha</label>
+									<input type="text" data-beatpicker="true" data-beatpicker-id="pickerFecha" data-beatpicker-position="['*','*']" data-beatpicker-format="['YYYY','MM','DD'],separator:'-'" data-beatpicker-module="clear,footer" name="fecha" id="fecha" placeholder="Seleccionar" class="default-browser" ng-model="form.fecha" required>
+								</div>
+								<div class="col s12 m4">
+									<label class="col s12">Horario (Desde-Hasta)</label>
+									<div class="col s6">
+										<select name="horario_desde" class="browser-default" ng-model="form.horario.desde" ng-change="generateCitas()" required>
+											<option value="" selected>Desde...</option>
+											
+								<{% verbatim %}
+												<option ng-repeat="hora in horas">{{hora}}</option><!--sacada del controlador-->
+											{% endverbatim %}
+
+
+
+										</select>
+									</div>
+									<div class="col s6">
+										<select name="horario_hasta" class="browser-default" ng-model="form.horario.hasta" ng-change="generateCitas()" required>
+                                                    <option value="" selected>Hasta...</option>
+												{% verbatim %}
+												<option ng-repeat="hora in horas">{{hora}}</option><!--sacada del controlador-->
+											{% endverbatim %}
+										</select>
+									</div>
+								</div>
+								<div class="col s12 m4">
+									<label>Intervalo Atención</label>
+									<select name="intervalo" class="browser-default" ng-model="form.intervalo" ng-change="generateCitas()" required>
+										<option value="" selected>Seleccionar...</option>
+										<option value="15">15 Minutos</option>
+										<option value="20">20 Minutos</option>
+									<!--	<option value="60">1 Hora</option>-->
+									</select>
+								</div>
+
+								<div class="col s12">
+									<table ng-show="citas">
+										<thead>
+											<tr>
+												<th data-field="hora">Hora</th>
+												<th data-field="cupo">Cupo</th>
+												<th data-field="sobre_cupo1">Sobre Cupo 1</th>
+												<th data-field="sobre_cupo2">Sobre Cupo 2</th>
+											</tr>
+										</thead>
+
+										<tbody>
+											{% verbatim %}
+												<tr ng-repeat="cita in citas">
+													<td>{{ cita.hora }}:{{ cita.minuto }}</td>
+													<td>
+														<input type="checkbox" id="cupo_{{cita.hora}}_{{ cita.minuto }}" ng-model="cita.cupo" />
+														<label for="cupo_{{cita.hora}}_{{ cita.minuto }}"></label>
+													</td>
+													<td>
+														<input type="checkbox" id="sobrecupo1_{{cita.hora}}_{{ cita.minuto }}" ng-model="cita.sobrecupo1" />
+														<label for="sobrecupo1_{{cita.hora}}_{{ cita.minuto }}"></label>
+													</td>
+													<td>
+														<input type="checkbox" id="sobrecupo2_{{cita.hora}}_{{ cita.minuto }}" ng-model="cita.sobrecupo2" ng-click="debug($event)" />
+														<label for="sobrecupo2_{{cita.hora}}_{{ cita.minuto }}"></label>
+													</td>
+												</tr>
+											{% endverbatim %}
+										</tbody>
+									</table>
+									<p class="msg-entel " ng-hide="citas"><b>¡Favor!</b> <span>_</span>Favor seleccionar filtros</p>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col s12">
+									<button type="submit" class="waves-effect waves-light btn right" ng-disabled="formStep1.$invalid"> Cargar </button>
+								</div>
+							</div>							
+						</form>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+{% endblock %}
+
+{% block js %}
+
+	<script src="{% static 'js/angular/app/controllers/cargar-citas.ctrl.js' %}"></script>
+	<script src="{% static 'js/angular/app/filters/utilidades.filter.js' %}"></script>
+	<script src="{% static 'js/angular/app/services/api-agenda.svc.js' %}"></script>
+	<script src="{% static 'js/angular/app/services/api-transversal.svc.js' %}"></script>
+	<script src="{% static 'js/angular/app/services/utilidades.svc.js' %}"></script>
+
+	<script>
+		$(document).ready(function(){
+			pickerFecha.on('select', function(data) {
+				$('input[name=fecha]').trigger('input');
+				$('input[name=cita]').val('');
+				$('input[name=cita]').trigger('input');
+				$('input[name=hora_select]').removeAttr('checked');
+			});
+		});
+	</script>
+
+{% endblock %}

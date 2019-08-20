@@ -1,0 +1,117 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block title %}Mi agenda en On Time Cloud{% endblock %}
+
+{% block css %}
+
+{% endblock %}
+
+{% block contenido %}
+
+
+
+	<div class="row white" ng-app="appAgenda" ng-controller="MisCitasCtrl" ng-cloak>
+		<div class="col s12 m6 offset-m3 z-depth-1" style="padding-top: 10px">
+			<div class="row">
+				<div class="col s12">
+					<h5 align="center">Detalle de mi agenda </h5>
+
+					<div class="col s9 input-icon">
+						<label for="rut">Buscador por Rut Identificador Ej: 123456789</label>
+						<input id="rut" name="rut" class="default-browser" ng-model="form.rut" ng-blur="searchReservas()" maxlength="9" minlength="8">
+						<i class="material-icons prefix">search</i>
+					</div>
+					<div class="col s3">
+						<label style="display: block;">&nbsp;</label>
+						<button class="waves-effect waves-light btn right" ng-click="searchReservas()" ng-disabled="!form.rut">[ Buscar_</button>
+					</div>
+				</div>				
+			</div>
+			<div class="row">
+				<div class="col s12">
+					<ul class="tabs">
+						<li class="tab col s6"><a href="#pendientes">Pendientes</a></li>
+						<li class="tab col s6"><a href="#historicas">Historicas</a></li>
+					</ul>
+				</div>
+
+				<div id="pendientes" class="col s12">
+					<p ng-show="reservas_pendientes.length == 0">No hay reservas pendientes</p>
+					<table ng-show="reservas_pendientes.length > 0">
+						<thead>
+							<tr>
+								<th data-field="establecimiento">Módulo</th>
+								<th data-field="profesional">Categoría</th>
+								<th data-field="especialidad">Departamento</th>
+								<th data-field="fecha">Fecha</th>
+								<th data-field="hora">Hora</th>
+								<th data-field="accion">Anular</th>
+							</tr>
+						</thead>
+						<h8 align="left">Nota: Para buscar el detalle de tu hora en On Time Cloud,                        debes ingresar rut sin puntos, ni dígito
+					verificador</h8>
+
+						<tbody>
+							{% verbatim %}
+								<tr ng-repeat="reserva in reservas_pendientes | orderBy: 'reserva.cita.fecha_citacion' | orderBy: 'reserva.cita.hora_citacion'">
+									<td>{{ reserva.cita.cliente.nombre }}</td>
+									<td>{{ reserva.cita.profesional.nombre }} {{ reserva.cita.profesional.apellidos }}</td>
+									<td>{{ reserva.cita.especialidad }}</td>
+									<td>{{ reserva.cita.fecha_citacion }}</td>
+									<td>{{ reserva.cita.hora_citacion }}</td>
+									<td class="center"><a href="#" ng-click="anularHora(reserva.id)" class="red-text"><i class="material-icons">remove_circle</i></a></td>
+								</tr>
+							{% endverbatim %}
+						</tbody>
+					</table>
+				</div>
+				<div id="historicas" class="col s12">
+					<p ng-show="reservas_historicas.length == 0">No hay reservas historicas</p>
+					<table ng-show="reservas_historicas.length > 0">
+						<thead>
+							<tr>
+								<th data-field="establecimiento">Módulo</th>
+								<th data-field="profesional">Sub-Categoría</th>
+								<th data-field="especialidad">Depto</th>
+								<th data-field="fecha">Fecha</th>
+								<th data-field="hora">Hora</th>
+							</tr>
+						</thead>
+
+						<tbody>
+							{% verbatim %}
+								<tr ng-repeat="reserva in reservas_historicas | orderBy: 'reserva.cita.fecha_citacion' | orderBy: 'reserva.cita.hora_citacion'" data-tachado="{{ reserva.es_cancelada }}">
+									<td>{{ reserva.cita.cliente.nombre }}</td>
+									<td>{{ reserva.cita.profesional.nombre }} {{ reserva.cita.profesional.apellidos }}</td>
+									<td>{{ reserva.cita.especialidad }}</td>
+									<td>{{ reserva.cita.fecha_citacion }}</td>
+									<td>{{ reserva.cita.hora_citacion }}</td>
+								</tr>
+							{% endverbatim %}
+						</tbody>
+					</table>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+
+
+
+{% endblock %}
+
+{% block js %}
+
+	<script src="{% static 'js/angular/app/controllers/mis-citas.ctrl.js' %}"></script>
+	<script src="{% static 'js/angular/app/filters/utilidades.filter.js' %}"></script>
+	<script src="{% static 'js/angular/app/services/api-agenda.svc.js' %}"></script>
+	<script src="{% static 'js/angular/app/services/api-transversal.svc.js' %}"></script>
+	<script src="{% static 'js/angular/app/services/utilidades.svc.js' %}"></script>
+
+	<script>
+		$(document).ready(function(){
+
+		});
+	</script>
+
+{% endblock %}

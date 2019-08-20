@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}Inicio de Sesión{% endblock %}
+
+{% block contenido %}
+
+	<div class="row">
+		<div class="s12 m6 offset-m3 content-login">
+			{% if form.errors %}
+			<div class="alerta alerta-error">Su nombre de usuario o contraseña son incorrectos, por favor intente nuevamente.</div>
+			{% endif %}
+			<div class="col s12 m3 offset-m4 z-depth-1 login">
+				<h2><i class="material-icons left">person</i> Mi On Time Cloud <i class="material-icons right">expand_less</i></h2>
+				{% if user.is_authenticated %}
+					<h5>Bienvenid@, {{ user.username }}.</h5>
+					<a href="{% url 'logout' %}" class="waves-effect waves-light btn right"> Salir </a>
+				{% else %}
+				<form method="post" action="/accounts/login/">{% csrf_token %}				
+					<input type="text" id="id_username" name="username" class="form-login" placeholder="Nombre de Usuario" autofocus />
+				    <input type="password" name="password" id="id_password" class="form-login" placeholder="Contraseña" value="" />
+
+					<button type="submit" class="waves-effect waves-light btn right" style="margin-top: 20px; width: 100%"> Iniciar Sesión </button>
+					<input type="hidden" name="next" value="{% if request.GET.next %}{{ request.GET.next }}{% else %}{{ request.path }}{% endif %}" />
+				</form>
+				<!--margin-top: 20px -->	
+				<div class="col s12 social-buttons no-padding" style="display:none;">
+					<span>Si no tiene cuenta puede iniciar con Facebook</span>
+					<a href="{% url 'social:begin' 'facebook' %}?next={{ request.path }}" class="btn btn-block btn-social btn-facebook">
+						<span class="fa fa-facebook"></span> Iniciar Sesión con Facebook
+					</a>
+				</div>
+				{% endif %}
+			</div>
+		</div>		
+	</div>
+	
+{% endblock %}

@@ -1,0 +1,65 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+	<title>{% block title %}{% endblock %} - On Time Cloud</title>
+
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel="stylesheet" href="{% static 'css/vendor/angular-material.min.css' %}" />
+	<link rel="stylesheet" href="{% static 'css/vendor/materialize.css' %}" />
+	<link rel="stylesheet" href="{% static 'css/vendor/BeatPicker.min.css' %}">
+	<link rel="stylesheet" href="{% static 'css/vendor/chosen.min.css' %}">
+	<link rel="stylesheet" href="{% static 'css/modal.css' %}" />
+	<link rel="stylesheet" href="{% static 'css/app.css' %}" />
+	<link rel="stylesheet" href="{% static 'css/vendor/bootstrap-social.css' %}" />
+
+	{% block css %}{% endblock %}
+
+	<!--  Android 5 Chrome Color-->
+	<meta name="theme-color" content="#ffffff">
+</head>
+<body class="white">
+
+	{% include "include/header.html" %}
+
+	{% include "include/nav.html" %}
+	
+	{% block contenido %}
+		CONTENT
+	{% endblock %}
+	
+	{% include "include/footer.html" %}
+
+	<script src="{% static 'js/vendor/jquery-2.2.0.min.js' %}"></script>
+	
+	<!-- Angular Material requires Angular.js v1.5.7 Libraries -->
+	<script src="{% static 'js/angular/libraries/angular.min.js' %}"></script>
+	<script src="{% static 'js/angular/libraries/angular-animate.min.js' %}"></script>
+	<script src="{% static 'js/angular/libraries/angular-aria.min.js' %}"></script>
+	<script src="{% static 'js/angular/libraries/angular-messages.min.js' %}"></script>
+	<!-- Angular Material v1.1.0-rc4 Library -->
+	<script src="{% static 'js/angular/libraries/angular-material.min.js' %}"></script>
+
+	<script src="{% static 'js/vendor/BeatPicker.min.js' %}"></script>
+	<script src="https://momentjs.com/downloads/moment.js"></script>
+
+	
+	<script src="{% static 'js/vendor/chosen.jquery.min.js' %}"></script>
+	<script src="{% static 'js/vendor/materialize.js' %}"></script>
+	<script src="{% static 'js/modal.js' %}"></script>
+	<script src="{% static 'js/functions.js' %}"></script>
+
+	<script>
+		$(document).ready(function(){
+			$('.modal').on('hidden.bs.modal', function() { $(this).removeData(); }); //Reinicia data cargada del Modal
+
+			$(".button-collapse").sideNav();
+		})
+	</script>
+	<script src="{% static 'js/angular/app/main.js' %}"></script>
+	
+	{% block js %}{% endblock %}
+</body>
+</html>

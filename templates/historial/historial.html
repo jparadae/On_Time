@@ -1,0 +1,216 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block title %}Historial On Time Cloud{% endblock %}
+
+{% block css %}
+
+{% endblock %}
+
+{% block contenido %}
+	<style type="text/css">
+		input[type=text] {
+		    width: 100%;
+		    padding: 12px 20px;
+		    margin: 8px 0;
+		    display: inline-block;
+		    border: 1px solid #ccc;
+		    border-radius: 4px;
+		    box-sizing: border-box;
+		}
+	</style>
+	<div class="row white" ng-app="appAgenda" ng-controller="GestionarCtrl" ng-cloak>
+		<div class="col s12 m8 offset-m2 z-depth-1" style="padding-top: 10px">
+			<h5 align="center">Historial de horas <b>Reservadas</b> en On Time Cloud</h5>
+			<div class="row">
+				<div class="col s12">
+					<div class="col s12 m4">
+						<label>Buscador por Módulo</label>
+						<select name="establecimiento" class="browser-default" ng-model="form.cliente" required>
+							<option value="" disabled selected>Seleccionar</option>
+
+							{% verbatim %}
+								<option ng-repeat="cliente in clientes" value="{{cliente.id}}">{{cliente.nombre}}</option>
+							{% endverbatim %}
+						</select>
+					</div>
+					</div>
+
+					<div class="col s12">
+						<div class="col s12 m1">
+							<p>Desde:</p>
+						</div>
+						<div class="col s12 m5">
+							<input type="text" data-beatpicker="true" data-beatpicker-id="pickerFecha" data-beatpicker-position="['*','*']" data-beatpicker-format="['YYYY','MM','DD'],separator:'-'" data-beatpicker-module="clear,footer" name="fecha" id="fecha"  ng-model="fechaInicio" />
+						</div>
+						<div class="col s12 m1">
+							<p>Hasta:</p>
+						</div>
+						<div class="col s12 m5">
+							<input type="text" data-beatpicker="true" data-beatpicker-id="pickerFecha" data-beatpicker-position="['*','*']" data-beatpicker-format="['YYYY','MM','DD'],separator:'-'" data-beatpicker-module="clear,footer" name="fecha" id="fecha"  ng-model="fechaFin" />
+						</div>
+					</div>
+			</div>
+			<div class="row">
+				<div class="col s12">
+					<ul class="tabs">
+						<li class="tab col s4"><a href="#pendientes">Pendientes</a></li>
+
+					</ul>
+				</div>
+				<div id="pendientes" class="col s12">
+					<p ng-show="reservas_pendientes.length == 0">No hay reservas pendientes</p>
+					<table ng-show="reservas_pendientes.length > 0">
+						<thead>
+							<tr>
+								<th data-field="paciente">Solicitante</th>
+								<th data-field="profesional">Unidad Departamento</th>
+								<th data-field="fecha">Fecha</th>
+								<th data-field="hora">Hora</th>
+								<th data-field="estado">Estado</th>
+
+							</tr>
+						</thead>
+
+						<tbody>
+							<form name="f1">
+							{% verbatim %}
+								<tr ng-repeat="reserva in reservas_pendientes | filterRange: fechaInicio : fechaFin |  filterCustom: 'cita.cliente.id': form.cliente | filterCustom: 'cita.especialidad': form.especialidad: true | filterCustom: 'cita.profesional.id': form.profesional: true | orderBy: 'reserva.cita.fecha_citacion' | orderBy: 'reserva.cita.hora_citacion'" ng-if="!reserva.contact_status && !reserva.contact_campania">
+									<td>{{ reserva.paciente.nombre }} {{ reserva.paciente.apellidos }}</td>
+									<td>{{ reserva.cita.profesional.nombre }} {{ reserva.cita.profesional.apellidos }}</td>
+									<td>{{ reserva.cita.fecha_citacion }}</td>
+									<td>{{ reserva.cita.hora_citacion }}</td>
+									<td class="center">
+										<i class="material-icons" ng-show="!reserva.contact_campania">info_outline</i>
+										<!--<i class="material-icons" ng-show="reserva.contact_campania">record_voice_over</i>
+										<i class="material-icons" ng-show="reserva.contact_status == 1">check</i>
+										<i class="material-icons" ng-show="reserva.contact_status == 2">block</i>-->
+									</td>
+
+								</tr>
+							{% endverbatim %}
+							</form>
+						</tbody>
+
+					</table>
+					<div class="col s12">
+					<button class="waves-effect waves-light btn right" onclick="window.print()"> Imprimir </button>
+					</div>
+				</div>
+
+
+			</div>
+		</div>
+	</div>
+
+{% endblock %}
+
+{% block js %}
+
+	<script src="{% static 'js/angular/app/controllers/gestionar.ctrl.js' %}"></script>
+	<script src="{% static 'js/angular/app/filters/utilidades.filter.js' %}"></script>
+	<script src="{% static 'js/angular/app/services/api-agenda.svc.js' %}"></script>
+	<script src="{% static 'js/angular/app/services/api-transversal.svc.js' %}"></script>
+	<script src="{% static 'js/angular/app/services/api-contactabilidad.svc.js' %}"></script>
+	<script src="{% static 'js/angular/app/services/utilidades.svc.js' %}"></script>
+
+	<script>
+		$(document).ready(function(){
+			pickerFecha.on('select', function(data) {
+				$('input[name=fecha]').trigger('input');
+			});
+		});
+	</script>
+
+	<script>
+	var valorActual;
+	function valorOption(sel){
+		valorActual = sel.options[sel.selectedIndex].text;
+	}
+
+	function fnExcelEnviados(){
+	    var tab_text="<table border='2px'>";
+	    var textRange; var j=0; var i=0;
+	    tab = document.getElementById('table2excel'); // id of table
+	 	//$("tr").find("td:last").css("background-color","red");
+	    for(j = 0 ; j < tab.rows.length ; j++) {
+	        tab_text=tab_text+tab.rows[j].innerHTML+"</tr>";
+	        //tab_text=tab_text+"</tr>";
+	    }
+
+	    tab_text=tab_text+"</table>";
+	    tab_text= tab_text.replace(/<A[^>]*>|<\/A>/g, "");//remove if u want links in your table
+	    tab_text= tab_text.replace(/<img[^>]*>/gi,""); // remove if u want images in your table
+	    tab_text= tab_text.replace(/<input[^>]*>|<\/input>/gi, ""); // reomves input params
+	    tab_text= tab_text.replace(/<th[^>]*>|<\/th>/g, ""); // reomves input params
+	    tab_text= tab_text.replace(/info_outline/gi, ""); // reomves input params
+	    tab_text= tab_text.replace(/record_voice_over/gi, ""); // reomves input params
+	    tab_text= tab_text.replace(/check/gi, ""); // reomves input params
+	    tab_text= tab_text.replace(/block/gi, ""); // reomves input params
+	    tab_text= tab_text.replace(/Estado/gi, ""); // reomves input params
+
+	    var ua = window.navigator.userAgent;
+	    var msie = ua.indexOf("MSIE ");
+
+	    if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./)){      // If Internet Explorer
+	        txtArea1.document.open("txt/html","replace");
+	        txtArea1.document.write(tab_text);
+	        txtArea1.document.close();
+	        txtArea1.focus();
+	        sa=txtArea1.document.execCommand("SaveAs",true,"Say Thanks to Sumit.xml");
+	    }
+	    else                 //other browser not tested on IE 11
+	        sa = window.open('data:application/vnd.ms-excel,' + encodeURIComponent(tab_text));
+
+	    return (sa);
+	}
+
+	function fnExcelHistorial(){
+	    if(valorActual == "Todas"){
+	    	var tab_text="<table border='2px'> Listado historico de reservas";
+	    }else if(valorActual == "Anuladas"){
+	    	var tab_text="<table border='2px'> Listado historico de reservas anuladas";
+	    }else{
+	    	var tab_text="<table border='2px'> Listado historico de reservas confirmadas";
+	    }
+
+	    var textRange; var j=0; var i=0;
+	    tab = document.getElementById('table1excel'); // id of table
+	 	//$("tr").find("td:last").css("background-color","red");
+	    for(j = 0 ; j < tab.rows.length ; j++) {
+	        tab_text=tab_text+tab.rows[j].innerHTML+"</tr>";
+	        //tab_text=tab_text+"</tr>";
+	    }
+
+	    tab_text= tab_text+"</table>";
+	    tab_text= tab_text.replace(/<A[^>]*>|<\/A>/g, "");//remove if u want links in your table
+	    tab_text= tab_text.replace(/<img[^>]*>/gi,""); // remove if u want images in your table
+	    tab_text= tab_text.replace(/<input[^>]*>|<\/input>/gi, ""); // reomves input params
+	    tab_text= tab_text.replace(/<th[^>]*>|<\/th>/g, ""); // reomves input params
+	    tab_text= tab_text.replace(/<select[^>]*>|<\/select>/g, ""); // reomves input params
+	    tab_text= tab_text.replace(/Anuladas/, ""); // reomves input param
+	    tab_text= tab_text.replace(/Confirmadas/, ""); // reomves input param
+	    tab_text= tab_text.replace(/Todas/, ""); // reomves input param
+	    tab_text= tab_text.replace(/info_outline/gi, ""); // reomves input params
+	    tab_text= tab_text.replace(/record_voice_over/gi, ""); // reomves input params
+	    tab_text= tab_text.replace(/check/gi, ""); // reomves input params
+	    tab_text= tab_text.replace(/block/gi, ""); // reomves input params
+	    tab_text= tab_text.replace(/Estado/gi, ""); // reomves input params
+
+	    var ua = window.navigator.userAgent;
+	    var msie = ua.indexOf("MSIE ");
+
+	    if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./)){      // If Internet Explorer
+	        txtArea12.document.open("txt/html","replace");
+	        txtArea12.document.write(tab_text);
+	        txtArea12.document.close();
+	        txtArea12.focus();
+	        sa=txtArea12.document.execCommand("SaveAs",true,"Say Thanks to Sumit.xml");
+	    }
+	    else                 //other browser not tested on IE 11
+	        sa = window.open('data:application/vnd.ms-excel,' + encodeURIComponent(tab_text));
+
+	    return (sa);
+	}
+	</script>
+
+{% endblock %}

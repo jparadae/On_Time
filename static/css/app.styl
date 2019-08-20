@@ -1,0 +1,931 @@
+azul-claro = #3498db
+azul-oscuro = #34495e
+amarillo = #fbba0a
+gris = #7f8c8d
+blanco = #ecf0f1
+verde-flat = #40d47e
+rojo-flat = #e74c3c
+
+azul-entel = #0154a0
+naranjo-entel = #FAFAFA
+gris-entel = #b3b1b3
+gris-claro-entel = #dcdcdc
+
+::selection
+	background azul-entel
+	color white
+
+::-moz-selection
+	background azul-entel
+	color white
+
+::-webkit-scrollbar
+	height 8px
+	width 8px
+ 
+::-webkit-scrollbar-track
+	background-color lighten(gris, 25)
+
+::-webkit-scrollbar-thumb
+	border-radius 2px
+	background-color lighten(gris, 10)
+
+::-webkit-scrollbar-button:start:decrement
+	display none
+
+::-webkit-scrollbar-button:end:increment
+	display none
+	
+nav
+	background-color azul-entel
+	
+footer
+	&.fixed
+		bottom 0
+		position fixed
+		width 100%
+		
+	.copyright
+		background-color #ddd
+		padding 15px 0
+		
+		.center
+			margin auto
+			
+			p
+				font-family 'Trebuchet MS',Arial,Helvetica,sans-serif
+				font-size 11px
+				color #636465
+				margin 0
+	
+input[type="text"], input[type="password"], input[type="tel"], input[type="email"], input[type="number"]
+	box-sizing border-box
+	font-size 0.9em
+	height 2.5em
+	margin 0
+	outline 0
+	padding 5px 10px
+	transition .2s
+	width 100%
+	
+	&.default-browser
+		background-color white
+		border 1px solid lighten(gris, 25)
+		border-radius 3px	
+		
+	&:focus
+		border-bottom 1px solid lighten(gris, 25) !important
+		box-shadow none !important
+		
+	&[readonly]
+		background-color lighten(gris, 35)
+		border-color lighten(gris, 35)
+		color gris
+		
+	&[name="fecha"]
+		background-color white !important
+		border 1px solid lighten(gris, 25) !important
+		color inherit !important
+		
+textarea
+	background-color white
+	border 1px solid lighten(gris, 25)
+	border-radius 3px
+	height 4.5em
+	outline 0
+	padding 5px 10px
+	resize none
+	
+	&[readonly]
+		background-color lighten(gris, 35)
+		border lighten(gris, 35)
+		color gris
+
+select
+	border 1px solid lighten(gris, 25)
+	border-radius 3px
+	font-size 0.9em
+	height 2.25rem
+	
+	&:focus
+		outline 0
+		
+.input-icon
+	position relative
+	
+	i
+		color lighten(gris, 25)
+		position absolute
+		top 28px
+		left 15px
+		
+	input
+		padding-left 30px
+		
+nav
+	#profile-dropdown
+		li
+			a
+				padding 10px
+				color azul-oscuro !important
+				
+				i
+					display inline-block
+					font-size 1.2em
+					
+				span
+					vertical-align top
+					
+	.btn-notificaciones
+		margin-right 10px
+		padding 0 10px
+		position relative
+		
+		.notificaciones
+			background lighten(gris, 35)
+			border-radius 5px
+			display none
+			max-height 300px
+			min-height 150px
+			left -140px
+			overflow auto
+			position absolute
+			top 90px
+			width 300px
+			
+			.flechita
+				border-bottom 15px solid lighten(gris, 35)
+				border-left 15px solid transparent
+				border-right 15px solid transparent
+				position absolute
+				top -15px
+				left 143px
+				
+			.aldia
+				color lighten(gris, 10)
+				margin-top 10px
+				text-align center
+
+				i
+					font-size 3.5em
+
+				p
+					font-size 1.5em
+					margin 0
+					
+			.alerta
+				background-color white
+				margin 5px
+				padding 10px
+				
+				p
+					color azul-oscuro
+					font-size 0.85em
+					line-height 1.5em
+					margin 0
+					
+	.btn-show-barmenu
+		margin-right 10px
+		padding 0 10px
+		
+		&.hide-menu
+			i
+				color #014C90
+				font-size 2.5em
+				text-shadow 1px 1px 1px gris-entel
+					
+.side-nav	
+	&.fixed
+		box-sizing border-box
+		background-color #878787 !important
+		position initial
+		
+		li
+			border-bottom 3px solid transparent
+			float left
+			line-height 1.5
+			padding 0 10px !important
+			
+			&:hover, &.active
+				background-color #4C4C4C !important
+				border-bottom 3px solid naranjo-entel
+				
+			&.bold
+				border-bottom none
+				
+			a
+				color white
+				font-weight 500
+				margin 0
+				padding 10px 0
+				text-align center
+				
+				i
+					color naranjo-entel
+					margin -5px 5px 0 0
+					
+				span
+					vertical-align sub
+				
+	.collapsible-body
+		background-color azul-entel
+		
+		ul
+			li				
+				a
+					font-size 0.9em
+					height 4em
+					line-height 4em
+					padding 0
+					
+.collapsible
+	&.reservar
+		li					
+			.collapsible-header
+				background-color azul-entel
+				color white
+				
+				i
+					color naranjo-entel
+					
+			.collapsible-body
+				padding 20px
+				
+				.input-field
+					
+					.prefix
+						color gris-entel
+						
+						&.active
+							color azul-entel
+				
+					label
+						top 0.5rem
+						
+						&.active
+							transform translateY(-110%)
+							
+					input
+						border none
+						border-bottom 1px solid gris-entel
+						border-radius 0
+						
+						&:focus:not([readonly]) + label
+							color azul-entel	
+				
+						&.valid
+							border-color gris-entel
+							box-shadow none
+							
+			&.disabled
+				.collapsible-header
+					background-color #878787
+					
+				.collapsible-body
+					display none !important
+					
+.card
+	.card-content
+		text-align center
+		
+		i
+			color naranjo-entel
+			font-size 7em
+		
+	.card-action
+		background-color azul-entel
+		padding 0
+		text-align center
+		
+		h5
+			color white
+			margin 0
+			text-transform capitalize
+
+.tabs
+	.tab		
+		a
+			background-color gris-claro-entel
+			border-left 2px solid #eeeeee
+			color #676767
+			font-size 0.85em
+			
+			&:hover
+				color #676767
+				
+			&.active
+				background-color azul-entel
+				color white
+				
+				&:hover
+					color white
+					
+		&:nth-child(1)
+			a
+				border-left none
+			
+	.indicator
+		display none
+		
+.tachado, [data-tachado=true]
+	text-decoration line-through
+		
+.btn
+	background-color naranjo-entel
+	border 1px solid transparent
+	border-radius 4px
+	color white
+	font-size 0.85em
+	font-weight 400
+	text-transform capitalize
+	
+	&:hover, &:focus
+		background-color darken(naranjo-entel, 10)
+		
+	&.secondary
+		background-color azul-entel
+		border-color transparent
+			
+		&:hover, &:focus
+			background-color darken(azul-entel, 10)
+		
+.btn-flat
+	color azul-oscuro
+	font-weight bold
+	
+	&.opc
+		font-size 0.75em
+		height 36px
+		padding 0 1em
+		
+		span
+			vertical-align top
+			
+.switch
+	margin-top 10px
+	
+	label input[type=checkbox]
+		&:checked + .lever
+			background-color lighten(naranjo-entel, 15)
+
+		&:checked + .lever:after
+			background-color naranjo-entel
+			
+[type="checkbox"].filled-in:checked + label:after
+	border 2px solid naranjo-entel
+	background-color naranjo-entel
+		
+.s0, .m0, l0
+	width 0% !important
+	
+.breadcrumbs
+	display: inline-block;
+	box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.35);
+	overflow: hidden;
+	border-radius: 3px;
+	counter-reset: flag;
+	margin-left -10px
+	margin-bottom 10px
+	margin-top 10px
+
+	a
+		text-decoration none
+		outline none
+		display block
+		float left
+		font-size 12px
+		line-height 36px
+		background white
+		color naranjo-entel
+		transition all 0.5s
+		padding 0 10px 0 35px
+		position relative
+
+		&.active, &:hover
+			background azul-entel
+			color white
+
+			&:after
+				background azul-entel
+
+		&:after
+			content ''
+			position absolute
+			top 0
+			right -18px
+			width 36px 
+			height 36px
+			transform scale(0.707) rotate(45deg)
+			z-index 1
+			background white
+			color white
+			transition all 0.5s
+			box-shadow:
+				2px -2px 0 2px rgba(0, 0, 0, 0.4), 
+				3px -3px 0 2px rgba(255, 255, 255, 0.1);
+			border-radius 0 3px 0 50px
+
+		&:nth-child(1)
+			padding-left 20px
+			border-radius 3px 0 0 3px
+
+		&:nth-last-child(1)
+			border-radius 0 3px 3px 0
+			padding-right 20px
+			
+			&:after
+				content none
+				
+.beatpicker
+	box-sizing content-box
+	
+	.main-nav
+		background azul-entel !important
+
+	.button
+		background azul-entel !important
+
+		&:hover
+			background darken(azul-entel, 10) !important
+
+	.days
+		.cell
+			&:hover
+				background darken(azul-entel, 10) !important
+
+			&.notable-today
+				background naranjo-entel !important
+				
+.input-parent.input-container
+	input
+		height 36px
+		
+.inline-block
+	.input-parent.input-container
+		input
+			width 48%				
+			
+			&:nth-child(1)
+				margin-right 3%
+				
+article
+	&.dashboard
+		height 150px
+		padding 15px
+		margin-bottom 15px
+		text-align center
+	
+		.barra
+			border-bottom 1px solid naranjo-entel
+			
+		h3, p
+			color azul-entel
+			
+		i
+			color azul-entel
+			font-size 4em
+			
+		h3
+			font-size 1.5em
+			margin 10px 0
+			
+		p
+			font-size 0.9em
+			margin 0
+			
+.msg-entel
+	color azul-entel
+	margin 0 !important
+	padding 10px 0 !important
+	
+	span
+		color naranjo-entel
+			
+.dashboard
+	overflow-x hidden
+	overflow-y auto
+	
+	.contenido
+		margin-bottom 15px
+		padding-top 10px !important
+		padding-bottom 10px !important
+		
+		fieldset
+			border none
+			
+		label
+			display block
+			
+		.switch
+			label
+				margin-top 10px
+	
+.content-login
+	padding 20px
+	
+	.login
+		border-radius 3px
+		color gris
+		margin 10px 0
+		padding 10px
+		
+		h2
+			background-color azul-entel
+			color white
+			font-size 1.5em
+			text-align center
+			margin-top 0
+			padding 10px
+
+.content-bandejas
+	padding 20px 0 !important
+	transition 0.3s
+	
+	.acciones
+		margin-bottom 10px
+		position relative
+		
+		input[type="text"]
+			display inline-block
+			font-size 1em
+			margin-right 20px
+			width initial
+			
+		p
+			display inline-block
+			margin 10px 0 0 0
+			
+			&:nth-last-child(1)
+				margin 10px 0 0 10px
+				
+			label
+				font-size 0.85rem
+				padding-left 30px
+				
+		a.btn
+			position absolute
+			right 10px
+			z-index 1
+		
+		.fixed-action-btn
+			bottom 0 !important
+			position absolute
+			right 10px !important
+			z-index 1 !important
+			
+			&.horizontal
+				ul
+					right 85px
+					
+				li
+					margin 0 15px 0 0
+			
+			.btn-floating
+				background-color naranjo-entel
+				
+				&+ ul
+					.btn-floating
+						background-color azul-entel
+	
+	.bandeja
+		overflow-x hidden
+		overflow-y scroll
+		
+		.filtros
+			margin-top 10px
+			
+			label
+				color azul-entel
+				font-weight bold
+			
+			select
+				display inline-block
+				width 65%
+		
+		.ticket
+			background-color white
+			border 1px solid white
+			border-radius 3px
+			border-bottom-right-radius 25px
+			color gris
+			cursor pointer
+			margin 10px 0
+			padding 10px
+			
+			.top
+				.num
+					color naranjo-entel
+					font-weight bold
+					
+				.fecha
+					text-align right
+					font-weight bold
+					font-size 0.85em
+					
+			.contenido
+				color #676767
+				margin 5px 0
+				
+				.asunto
+					color azul-entel
+					font-weight 500
+					
+				.descripcion
+					height 48px
+					overflow hidden
+					position relative
+					font-size 0.9em
+						
+					p
+						margin 0
+					
+			.bottom
+				font-size 0.85em
+				
+				.solicitante, .asignado
+					height 1.5em
+					overflow hidden
+
+				.asignado
+					text-align right
+
+			
+			&:hover, &.active
+				background-color #fffbea
+				border-color naranjo-entel
+				
+				.contenido						
+					.descripcion						
+						&:after
+							background linear-gradient(to right, rgba(255, 251, 234, 0), rgba(255, 251, 234, 1) 50%)
+
+.modal-content
+	.modal-header
+		h2
+			color azul-oscuro
+			font-size 2em
+			margin 0
+			width 95%
+			
+	.modal-body
+		.body
+			overflow-y hidden !important
+			
+.no-acceso
+	color lighten(gris, 10)
+	margin-top 70px
+	text-align center
+	
+	i
+		font-size 4em
+		
+	p
+		font-size 2em
+		margin 10px
+			
+.content-ticket, .modal-body
+	padding 0 !important
+	transition 0.3s
+	
+	.loading
+		position absolute
+		z-index 1
+		
+		.progress
+			background-color lighten(naranjo-entel, 10)
+			margin-top 0
+			
+			.indeterminate
+				background-color darken(naranjo-entel, 10)
+	
+	.header
+		padding 10px
+		height 53px
+		overflow hidden
+		
+		h2
+			color azul-oscuro
+			font-size 2em
+			margin 0
+			width 95%
+			
+			div
+				transition 0.3s
+				
+				&.titleAsunto
+					font-size 0.85em
+					transform translate(0, 50px)
+			
+	.body
+		overflow-x hidden
+		overflow-y scroll
+		
+		.tiempos
+			font-size 0.8em
+			margin 10px 0
+			
+			.sla
+				strong, span
+					vertical-align top
+					
+					i
+						color gris
+						font-size 1.5em
+						
+						&.cumple
+							&.si
+								color verde-flat
+								
+							&.no
+								color rojo-flat
+								
+							&.masmenos
+								color naranjo-entel
+							
+			.valor
+				position relative
+				
+				span
+					font-size 2em
+					padding-left 5px
+					position absolute
+					top -10px
+			
+		.separador
+			border-top 1px dashed gris-entel
+			
+		.productos-utilizados
+			display none
+			
+			.contenedor
+				border 1px solid lighten(gris, 25)				
+				border-radius 3px
+				
+				.item
+					overflow hidden
+					padding-bottom 10px
+					
+					label
+						display block
+					
+					i
+						cursor pointer
+						
+						&.add
+							color azul-entel
+							
+						&.remove
+							color rojo-flat
+			
+		.contenedor-imagenes
+			border 1px solid lighten(gris, 25)
+			border-radius 3px
+			overflow-x auto
+			white-space nowrap
+			height 55px
+			overflow-y hidden
+			padding 0 7px
+			
+			a
+				display inline-block
+				height 40px
+				position relative
+				width 40px
+			
+				img
+					border 1px solid azul-entel
+					border-radius 3px
+					height 40px
+					position absolute
+					top -7px
+					width 40px
+					
+					&.documento
+						border none
+					
+			.upload
+				display inline-block
+				line-height 40px
+				margin 7px 0
+				min-height 40px
+				overflow hidden
+				position relative
+				text-align center
+				width 40px
+				
+				canvas
+					border 1px solid azul-entel
+					border-radius 3px
+					height 40px
+					position absolute
+					left 0
+					width 40px
+					
+					&:hover
+						opacity 0.5
+						
+						& + .icon-remove
+							z-index 1
+							
+				#agregar-imagenes
+					i
+						position absolute
+						color azul-entel
+						left -15px
+						top 5px
+						font-size 2em
+						cursor pointer
+						
+				.porcentaje
+					background naranjo-entel
+					bottom 5px
+					height 5px
+					position absolute
+					width 0%
+					
+		.observacion
+			label
+				visibility hidden
+				
+			textarea
+				display none
+				
+		input
+			&[name="solo-comentarios"] + label
+				font-size 0.9em
+				
+		label
+			&[for="asignado"]
+				display block
+				
+		button
+			&[name="btn_tomar"]
+				float right
+				height 33px
+				
+		textarea
+			&.show-modal
+				cursor pointer
+				cursor -webkit-zoom-in
+				
+		.intervenir
+			border 1px solid naranjo-entel
+				
+		.historial
+			.icon
+				border 1px solid azul-entel
+				width 40px
+				height 40px
+				line-height 40px
+				text-align center
+				margin auto
+				
+				i
+					color azul-entel
+					margin-top 5px
+					font-size 2em
+					
+					&.small
+						font-size 1.5em
+						margin-top 7px
+					
+			.barra
+				height 40px
+				border-left 2px dashed azul-entel
+				margin-top 5px
+				
+			.chat
+				background-color white
+				border 1px solid lighten(gris, 25)
+				border-radius 5px
+				position relative
+				margin-bottom 10px
+				padding-top 10px
+				
+				.flechita
+					border-top 10px solid transparent
+					border-bottom 10px solid transparent
+					border-right 20px solid #c2c9c9
+					left -20px
+					position absolute
+					top 5px
+				
+				.top
+					color gris
+					font-size 0.85em
+					
+					.fecha
+						text-align right
+						
+						i
+							color naranjo-entel
+							font-size 1.5em
+							
+						span
+							vertical-align top
+						
+				.obs
+					color #676767
+					font-style italic
+					font-size 0.95em
+					font-weight 400

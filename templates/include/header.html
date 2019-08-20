@@ -1,0 +1,103 @@
+{% load staticfiles %}
+
+<header class="header--featured row mt-4 mb-1 mx-4 d-none d-md-flex" role="banner">
+            <div class="col-3 col-lg-5">
+                <div class="row">
+                    <div class="col-12 col-lg-7 col-xl-5">
+             
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-9 col-lg-7">
+                <div class="row pb-2">
+                    <div class="col-6"></div>
+
+                </div>
+
+            </div>
+
+        </header>
+
+<header>
+	<div class="navbar-fixed">
+		<!--<nav style="overflow: initial;">-->
+			<div class="nav-wrapper #769e33 light-green darken-2"> <!--color nav-->
+				<a href="#" data-activates="mobile-demo" class="button-collapse right"><i class="material-icons">menu</i></a>
+				<ul class="side-nav" id="mobile-demo">
+					<div class="no-paddidng">
+						{% if user.is_authenticated %}
+							<div class="chip center" style="margin-top: 15px; margin-left: 10%; width: 80%">
+							<i class="material-icons">account_circle</i>	<img src="" alt="{{ user.first_name }}">
+							<a class="dropdown-button waves-effect grey-text text-darken-4" style="line-height: 32px;">{{ user.first_name }}</a>
+						</div>
+						{% else %}
+							<!--<div class="col s12 social-buttons">
+								<a href="{% url 'social:begin' 'facebook' %}?next={{ request.path }}" class="btn btn-block btn-social btn-facebook">
+									<span class="fa fa-facebook"></span> Iniciar Sesión con Facebook
+								</a>
+							</div>-->
+						{% endif %}
+					</div>
+					<li class="no-padding">
+						<ul class="collapsible collapsible-accordion ">
+							<li class="bold "><a href="{% url 'agenda' %}" class="collapsible-header waves-effect "><i class="material-icons">event</i> Agenda</a>
+							</li>
+						</ul>
+					</li>
+					{% if user.is_authenticated %}
+						<li class="no-padding">
+							<ul class="collapsible collapsible-accordion">
+								<li class="bold"><a href="{% url 'cargar' %}" class="collapsible-header waves-effect"><i class="material-icons">open_in_browser</i> Cargar</a>
+								</li>
+							</ul>
+						</li>
+						<li class="no-padding">
+							<ul class="collapsible collapsible-accordion">
+								<li class="bold"><a href="/admin/" class="collapsible-header waves-effect"><i class="material-icons">settings</i> Administración</a>
+								</li>
+							</ul>
+						</li>
+					{% endif %}
+					<li class="no-padding">
+						<ul class="collapsible collapsible-accordion">
+							<li class="bold"><a href="#" class="collapsible-header waves-effect"><i class="material-icons">live_help</i> Ayuda</a>
+							</li>
+						</ul>
+					</li>
+					<li class="no-padding">
+						<ul class="collapsible collapsible-accordion">
+							<li class="bold"><a href="{% url 'logout' %}" class="collapsible-header waves-effect"><i class="material-icons">exit_to_app</i> Salir</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+
+				{% if user.is_authenticated %}
+					<div class="chip right hide-on-med-and-down" style="margin-top: 15px;">
+						<i class="material-icons">account_circle</i><img src="" alt="{{ user.first_name }}">
+						<a class="dropdown-button waves-effect grey-text text-darken-4" data-activates="profile-dropdown">{{ user.username }}</a>
+				
+						<ul id="profile-dropdown" class="dropdown-content" style="width: 200px;">
+							<li><a href="#"><i class="mdi-action-face-unlock"></i> <span>Perfil</span></a>
+							</li>
+							<li><a href="#"><i class="mdi-action-help"></i> <span>Ayuda</span></a>
+							</li>
+							<li class="divider"></li>
+							<li><a href="{% url 'logout' %}"><i class="mdi-hardware-keyboard-tab"></i> <span>Salir</span></a>
+							</li>
+						</ul>
+					</div>
+				{% else %}
+					<a href="{% url 'login' %}" class="waves-effect waves-light btn right" style="margin-top: 14px;"> Iniciar Sesión </a>
+				{% endif %}
+
+			</div>
+	<!--	</nav>-->
+	</div>
+	
+</header>
+
+

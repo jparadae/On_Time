@@ -1,0 +1,198 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block title %}Reserva de cita en Dideco{% endblock %}
+
+{% block css %}
+
+{% endblock %}
+
+{% block contenido %}
+
+
+
+
+
+
+	<div class="row white" ng-app="appAgenda" ng-controller="ReservarCtrl">
+		<div class="col s12 m6 offset-m3">
+			<ul class="collapsible collapsible reservar" data-collapsible="expandable">
+				<li>
+					<div class="collapsible-header active #fb8c00 orange darken-1" data-step="1"><i class="material-icons">location_on</i> Selección de trámites disponibles en agenda OTC</div>
+					<div class="collapsible-body">
+						<form name="formStep1" ng-submit="submitReserva(1)" novalidate>
+							<div class="row">
+								<div class="col s12 m6">
+									<label>Seleccione Módulo a Atender:</label>
+									<select name="establecimiento" class="browser-default" ng-model="form.cliente" ng-change="resetHora()" required>
+										<option value="" disabled selected>Seleccionar...</option>
+
+										{% verbatim %}
+											<option ng-repeat="cliente in clientes" value="{{cliente.id}}">{{cliente.nombre}}</option>
+										{% endverbatim %}
+									</select>
+								</div>
+							<!--	<div class="col s12 m6">
+									<label>Unidades de Departamento</label>
+									<select name="especialidad" class="browser-default" ng-model="form.especialidad" ng-change="resetHora()" ng-disabled="!form.cliente" required>
+										<option value="" disabled selected>Seleccionar</option>
+										      <option value="Registro Social">Departamento de Registro Social de Hogares</option>
+                                        <option value="Subsidios" selected>Departamento de Subsidios</option>
+										 <option value="Discapacidad">Departamento de Discapacidad</option>
+                                        <option value="Ayudas" selected>Departamento Social, Subsidios Monetarios y Ayudas Sociales</option>
+										 <option value="Beneficios Especies">Departamento Social, Ayudas Sociales en especies o servicios</option>
+
+										{% verbatim %}
+											<option ng-repeat="cita in citas | filterCustom: 'cliente.id': form.cliente | groupBy: 'especialidad'" ng-show="cita.especialidad_CHANGED">{{cita.especialidad}}</option>
+										{% endverbatim %
+									</select>
+								</div>-->
+							</div>
+							<div class="row">
+								<div class="col s12">
+									<button type="submit"  class="waves-effect waves-light btn secondary right" ng-click="confirm()" ng-disabled="formStep1.$invalid"> Siguiente </button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</li>
+				<li class="disabled">
+					<div class="collapsible-header active #fb8c00 orange darken-1" data-step="2"><i class="material-icons">event_note</i> ¿Cuándo? y ¿Qué Agenda OTC?</div>
+					<div class="collapsible-body">
+						<form name="formStep2" ng-submit="submitReserva(2)" novalidate>
+							<div class="row">
+								<div class="col s12 m6">
+									<label>Filtro por fecha en agenda</label>
+									<input type="text" data-beatpicker="true" data-beatpicker-id="pickerFecha" data-beatpicker-position="['*','*']" data-beatpicker-format="['YYYY','MM','DD'],separator:'-'" data-beatpicker-module="clear,footer" name="fecha" id="fecha" placeholder="Seleccionar" class="default-browser" ng-model="form.fecha">
+								</div>
+								<div class="col s12 m6">
+									<label>Unidad Departamento</label>
+									<select name="profesional" class="browser-default" ng-model="form.profesional" ng-change="resetHora()">
+										<option value="" selected>Seleccionar...</option>
+
+										{% verbatim %}
+											<option ng-repeat="profesional in profesionales | filterCustom: 'cliente.id': form.cliente" value="{{profesional.id}}">{{profesional.nombre}} {{profesional.apellidos}}</option>
+										{% endverbatim %}
+									</select>
+								</div>
+
+
+
+
+
+								<div class="col s12">
+									<input type="text" name="cita" ng-show="formStep1.$invalid" ng-model="form.cita" required>
+									<table ng-show="citas">
+										<thead>
+											<tr>
+											<th data-field="profesional">Unidad Departamento</th>
+												<th data-field="fecha">Fecha</th>
+												<th data-field="hora">Hora</th>
+												<th data-field="accion">Tomar</th>
+											</tr>
+										</thead>
+
+										<tbody>
+											{% verbatim %}
+												<!--<tr ng-repeat="cita in citas | filterCustom: 'cliente.id': form.cliente | filter: {especialidad: form.especialidad} | filterCustom: 'profesional.id': form.profesional: true | filter: {fecha_citacion: form.fecha} | orderBy: 'fecha_citacion' | orderBy: 'hora_citacion'">-->
+												<tr ng-repeat="cita in citas | filter: {fecha_citacion: form.fecha} | filterCustom: 'profesional.id': form.profesional | orderBy: 'fecha_citacion' | orderBy: 'hora_citacion'">
+													<td>{{ cita.profesional.nombre }} {{ cita.profesional.apellidos }}</td>
+													<td>{{ cita.fecha_citacion }}</td>
+													<td>{{ cita.hora_citacion }}</td>
+													<td>
+														<input class="with-gap" name="hora_select" type="radio" id="hora_{{ cita.id }}" data-cita="{{ cita.id }}" ng-click="selectHora($event)" />
+														<label for="hora_{{ cita.id }}"></label>
+													</td>
+												</tr>
+											{% endverbatim %}
+										</tbody>
+									</table>
+									<p class="msg-entel" ng-hide="citas"><b>¡Ooops...!</b> <span>_</span>No hay horas disponibles aún</p>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col s12">
+									<button type="submit" class="waves-effect waves-light btn secondary right" ng-disabled="formStep1.$invalid || formStep2.$invalid"> Siguiente </button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</li>
+				<li class="disabled">
+					<div class="collapsible-header #fb8c00 orange darken-1" data-step="3"><i class="material-icons">person_add</i> Datos del Solicitante</div>
+					<div class="collapsible-body">
+						<form name="formStep3" ng-submit="submitReserva(3)" novalidate>
+							<div class="row">
+								<div class="input-field col s12">
+									<i class="material-icons prefix">credit_card</i>
+									<input id="rut" name="rut" type="number" class="validate" ng-model="form.rut" ng-blur="getDatosPaciente()" required>
+
+									<label for="rut">RUT sin guion y puntos ej: 180645552</label>
+								</div>
+								<div class="input-field col s6">
+									<i class="material-icons prefix">account_circle</i>
+									<input id="nombre" name="nombre" type="text" class="validate" ng-model="form.nombre" required>
+
+								</div>
+								<div class="input-field col s6">
+									<input id="apellidos" name="apellidos" type="text" class="validate" ng-model="form.apellidos" required>
+									<label for="apellidos">Apellidos</label>
+								</div>
+								<div class="input-field col s6">
+									<i class="material-icons prefix">domain</i>
+									<input id="direccion" name="direccion" type="text" class="validate" ng-model="form.direccion" required>
+									<label for="direccion">Dirección</label>
+								</div>
+								<div class="input-field col s6">
+									<i class="material-icons prefix">email</i>
+									<input id="email" name="email" type="email" class="validate" ng-model="form.email">
+									<label for="email">Email</label>
+								</div>
+								<div class="input-field col s6">
+									<i class="material-icons prefix">phone</i>
+									<input id="telefono" name="telefono" type="number" class="validate" ng-model="form.telefono" required>
+									<label for="telefono">Teléfono ej: 56997113362 </label>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col s12">
+									<button type="submit" class="waves-effect waves-light btn right" ng-disabled="formStep1.$invalid || formStep2.$invalid || formStep3.$invalid"> Reservar </button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+
+
+
+
+
+{% endblock %}
+
+{% block js %}
+
+	<script src="{% static 'js/angular/app/controllers/reservar-cita.ctrl.js' %}"></script>
+	<script src="{% static 'js/angular/app/filters/utilidades.filter.js' %}"></script>
+	<script src="{% static 'js/angular/app/services/api-agenda.svc.js' %}"></script>
+	<script src="{% static 'js/angular/app/services/api-transversal.svc.js' %}"></script>
+	<script src="{% static 'js/angular/app/services/utilidades.svc.js' %}"></script>
+
+
+
+	<script>
+		$(document).ready(function(){
+			pickerFecha.on('select', function(data) {
+				$('input[name=fecha]').trigger('input');
+				$('input[name=cita]').val('');
+				$('input[name=cita]').trigger('input');
+				$('input[name=hora_select]').removeAttr('checked');
+			});
+		});
+	</script>
+
+
+
+{% endblock %}
