@@ -6,7 +6,7 @@ configparser==3.5.0b2
 cryptography==2.3
 defusedxml==0.6.0
 diff-match-patch==20181111
-Django==1.11.20
+Django==1.11.23
 django-import-export==1.2.0
 djangorestframework==3.9.4
 entrypoints==0.3
