@@ -95,7 +95,7 @@ DATABASES = {
         'NAME': 'dacion_horas',
         'USER': 'postgres',
         'PASSWORD': 'jparada1',
-        'HOST': 'localhost',
+        'HOST': '172.17.0.2',
         'PORT': '5432',
     },
 }
