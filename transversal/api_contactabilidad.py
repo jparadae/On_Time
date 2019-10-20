@@ -9,7 +9,7 @@ credenciales = {'user': 'dacion_horas', 'pass': 'dacion_horas.-2016'}
 
 @login_required
 def create_campania(request):
-	#url = 'http://10.8.255.106/api/citas/crear_campania/?id_tipo=%s' % (request.GET['tipo'])
+	#url = 'http://10.8.255.106/api/citas/crear_campania/?id_tipo=%s' % (request.GET['tipo'])s
 	url = 'http://10.8.255.53/api/citas/crear_campania/?id_tipo=%s' % (request.GET['tipo'])
 	result = requests.get(url, auth=HTTPDigestAuth(credenciales['user'], credenciales['pass']))
 
