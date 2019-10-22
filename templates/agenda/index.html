@@ -7,45 +7,18 @@
 {% endblock %}
 
 {% block contenido %}
-
-<!-- Modal HTML embedded directly into document -->
-<div id="ex1" class="modal">
-	<h6 align="center"><b>Disponibilidad Agenda</b></h6>
-   <table>
-        <thead>
-          <tr>
-              <th>Lunes &nbsp;</th>
-              <th>Martes</th>
-              <th>Jueves</th>
-			  <th>Viernes</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          <tr>
-            <td>Reistro Social de Hogares</td>
-            <td>Atención Social</td>
-            <td>Discapacidad</td>
-			  <td>Subsidios</td>
-          </tr>
-
-        </tbody>
-      </table>
-
-  <a href="#" rel="modal:close"><i class="material-icons">directions_walk</i>Cerrar</a>
-</div>
-
-<!-- Link to open the modal -->
+<div class="container">
+  <div class="row justify-content-center">
 
 
-	<div class="row">
-		<div class="col s12 m3 offset-m3">
+
+		<div class="col s12 m3 ">
 			<div class="card">
 				<div class="card-content">
-					<i class="material-icons">add_to_photos</i>
+					<i class="material-icons">room_service</i>
 				</div>
 				<div class="card-action waves-effect waves-block waves-light #f57c00 orange darken-2">
-					<a href="{% url 'reservar-cita' %}"><h5> Reservar hora en OTC </h5></a>
+					<a href="{% url 'reservar-cita' %}"><h5> Reserva tu Servicio </h5></a>
 				</div>
 			</div>
 
@@ -56,14 +29,28 @@
 					<i class="material-icons">chrome_reader_mode</i>
 				</div>
 				<div class="card-action waves-effect waves-block waves-light #f57c00 orange darken-2">
-					<a href="{% url 'mis-citas' %}"><h5> Mis Citas en OTC </h5></a>
+					<a href="{% url 'mis-citas' %}"><h5> Servicios Solicitados </h5></a><!--El usuario verá todos los servicios solicitados-->
+				</div>
+			</div>
+		</div>
+
+        <div class="col s12 m3">
+			<div class="card">
+				<div class="card-content">
+					<i class="material-icons">local_shipping</i>
+				</div>
+				<div class="card-action waves-effect waves-block waves-light #f57c00 orange darken-2">
+					<a href="{% url 'mis-citas' %}"><h5> Estado Pedido </h5></a><!--El usuario vera el estado de su pedido-->
 				</div>
 			</div>
 		</div>
 
 
 
+
+
 	</div>
+</div>
 
 
 
@@ -74,176 +61,6 @@
 <!--Collapsive-->
 <!-- Modal HTML embedded directly into document -->
 
-
-
-   <ul class="collapsible popout">
-     <li>
-    <div class="#7cb342 light-green darken-1"><span style="color:#FFFFFF";><h5 align="center">Documentación Requerida por Unidad de Departamento</h5></div>
-    </li>
-
-   <li>
-      <div class="collapsible-header #f57c00 orange darken-2"><span style="color:#FFFFFF";><i class="material-icons">home</i>Registro Social de Hogares </div>
-      <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-    </li>
-    <li>
-      <div class="collapsible-header #f57c00 orange darken-2"><span style="color:#FFFFFF";><i class="material-icons">group</i>Atención Social </div>
-      <div class="collapsible-body">
-         <span>
-
-		   <table class="striped">
-        <thead>
-          <tr>
-
-              <th>Ayuda servicios funerarios </th>
-              <th>Ayuda cajas de alimentos </th>
-              <th>Ayuda leche </th>
-			  <th>Ayuda mediaguas </th>
-              <th>Ayuda materiales de construcción </th>
-              <th>Ayuda camas y camarotes </th>
-              <th>Ayuda colchones y ropa de cama </th>
-              <th>Ayuda pañales de niño </th>
-              <th>Ayuda pañales de adulto </th>
-              <th>Ayuda ajuares para recién nacidos</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          <tr>
-            <td>Copia Cédula de Identidad</td>
-            <td>Copia Cédula de Identidad</td>
-              <td>Copia Cédula de Identidad</td>
-			 <td>Copia Cédula de Identidad</td>
-               <td>Copia Cédula de Identidad</td>
-            <td>Copia Cédula de Identidad</td>
-              <td>Copia Cédula de Identidad</td>
-			 <td>Copia Cédula de Identidad</td>
-                <td>Copia Cédula de Identidad</td>
-			 <td>Copia Cédula de Identidad</td>
-          </tr>
-
-
-        </tbody>
-		   </table></span>
-
-      </div>
-    </li>
-    <li>
-      <div class="collapsible-header #f57c00 orange darken-2"><span style="color:#FFFFFF";><i class="material-icons">accessible</i>Discapacidad </div>
-      <div class="collapsible-body"><span>
-		   <table class="striped">
-        <thead>
-          <tr>
-              <th>Beca Locomoción </th>
-              <th>Programa de ayuda pañales y leche </th>
-              <th>Ayudas Técnicas </th>
-			  <th>Centro de REHUE </th>
-          </tr>
-        </thead>
-
-        <tbody>
-          <tr>
-            <td>Cédula de Identidad</td>
-            <td>Cédula de Identidad</td>
-            <td>Cédula de Identidad</td>
-			  <td>Cédula de Identidad</td>
-          </tr>
-
-		  <tr>
-            <td>Credencial de Discapacidad emitida por SENADIS.</td>
-            <td>Carnet del Programa Postrado</td>
-            <td>Informe médico al día</td>
-			  <td>Diagnóstico médico.</td>
-          </tr>
-
-		<tr>
-            <td>Certificado de residencia</td>
-            <td>Certificado médico al día</td>
-            <td></td>
-			  <td>Diagnostico Educador Diferencial.</td>
-          </tr>
-
-		<tr>
-            <td>Certificado de Alumno Regular del Establecimiento/Certificado de Rehabilitación.</td>
-            <td>Comprobante de pago de pensión y/o liquidaciones de sueldo</td>
-            <td></td>
-			  <td></td>
-          </tr>
-
-
-        </tbody>
-		   </table></span>
-
-
-
-
-	  </div>
-    </li>
-
-	   <li>
-      <div class="collapsible-header #f57c00 orange darken-2"><span style="color:#FFFFFF";><i class="material-icons">monetization_on</i>Subsidios </div>
-      <div class="collapsible-body">
-            <span>
-		   <table class="striped">
-        <thead>
-          <tr>
-              <th>Subsidio de Discapacidad Mental </th>
-              <th>Subsidio Único Familiar </th>
-              <th>Subsidio Maternal </th>
-			  <th>Subsidios de agua potable y alcantarillado </th>
-          </tr>
-        </thead>
-
-        <tbody>
-          <tr>
-            <td>Copia Cédula de Identidad</td>
-            <td>Copia Cédula de Identidad</td>
-              <td>Copia Cédula de Identidad</td>
-			 <td>Copia Cédula de Identidad</td>
-          </tr>
-
-            <tr>
-            <td>Certificado de nacimiento</td>
-            <td>Certificado de nacimiento</td>
-              <td>Carné de control maternal al día</td>
-			 <td>Comprobante de pago última cuenta</td>
-          </tr>
-
-         <tr>
-            <td>Certificado de residencia en la comuna</td>
-            <td>Certificado de control sano al día (para menores de 5 años)</td>
-              <td>Certificado médico de meses de embarazo</td>
-			 <td></td>
-          </tr>
-
-         <tr>
-            <td>Formulario del Decreto Ley Nº869 (emitido por el médico tratante)</td>
-            <td>Certificado de alumno regular con máximo un mes de antigüedad (para niños de 5 a 17 años).</td>
-              <td></td>
-			 <td></td>
-          </tr>
-
-         <tr>
-            <td>Certificado médico emitido por médico especialista hospital público</td>
-            <td></td>
-              <td></td>
-			 <td></td>
-          </tr>
-
-        </tbody>
-		   </table></span>
-
-
-
-
-
-      </div>
-    </li>
-
-	   <li>
-      <div class="collapsible-header #f57c00 orange darken-2"><span style="color:#FFFFFF";><i class="material-icons">account_balance</i>Vivienda  </div>
-      <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-    </li>
-  </ul>
 
 
 
