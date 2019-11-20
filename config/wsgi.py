@@ -10,7 +10,7 @@ https://docs.djangoproject.com/en/1.9/howto/deployment/wsgi/
 from django.core.wsgi import get_wsgi_application
 import os, sys
 
-sys.path.append('/var/www/angeda_v2')
+sys.path.append('/var/www/django/On_Time')
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings")
 
