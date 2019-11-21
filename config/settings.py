@@ -141,11 +141,11 @@ STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
-    '/var/www/On_Time/static/',
+    '/var/www/django/On_Time/static/',
 ]
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = '/var/www/On_Time/media'
+MEDIA_ROOT = '/var/www/django/On_Time/media'
 
 AUTHENTICATION_BACKENDS = (
     # Django
