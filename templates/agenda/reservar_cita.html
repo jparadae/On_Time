@@ -17,12 +17,12 @@
 		<div class="col s12 m6 offset-m3">
 			<ul class="collapsible collapsible reservar" data-collapsible="expandable">
 				<li>
-					<div class="collapsible-header active #757575 grey darken-1" data-step="1"><i class="material-icons">location_on</i> Selección de trámites disponibles en agenda OTC</div>
+					<div class="collapsible-header active #757575 grey darken-1" data-step="1"><i class="material-icons">location_on</i> Selección de Establecimiento a Atender</div>
 					<div class="collapsible-body">
 						<form name="formStep1" ng-submit="submitReserva(1)" novalidate>
 							<div class="row">
 								<div class="col s12 m6">
-									<label>Seleccione Módulo a Atender:</label>
+									<label>Seleccion de Establecimiento:</label>
 									<select name="establecimiento" class="browser-default" ng-model="form.cliente" ng-change="resetHora()" required>
 										<option value="" disabled selected>Seleccionar...</option>
 
@@ -31,21 +31,21 @@
 										{% endverbatim %}
 									</select>
 								</div>
-							<!--	<div class="col s12 m6">
-									<label>Unidades de Departamento</label>
+								<div class="col s12 m6">
+									<label>Seleccion de Especialidad:</label>
 									<select name="especialidad" class="browser-default" ng-model="form.especialidad" ng-change="resetHora()" ng-disabled="!form.cliente" required>
 										<option value="" disabled selected>Seleccionar</option>
-										      <option value="Registro Social">Departamento de Registro Social de Hogares</option>
-                                        <option value="Subsidios" selected>Departamento de Subsidios</option>
-										 <option value="Discapacidad">Departamento de Discapacidad</option>
-                                        <option value="Ayudas" selected>Departamento Social, Subsidios Monetarios y Ayudas Sociales</option>
-										 <option value="Beneficios Especies">Departamento Social, Ayudas Sociales en especies o servicios</option>
+										      <option value="Registro Social">Kinesiología</option>
+                                        <option value="Subsidios" selected>Odontología</option>
+										 <option value="Discapacidad">Medicina General</option>
+                                        <option value="Ayudas" selected>Pediatría</option>
+										 <!--<option value="Beneficios Especies">Departamento Social, Ayudas Sociales en especies o servicios</option>-->
 
 										{% verbatim %}
 											<option ng-repeat="cita in citas | filterCustom: 'cliente.id': form.cliente | groupBy: 'especialidad'" ng-show="cita.especialidad_CHANGED">{{cita.especialidad}}</option>
 										{% endverbatim %
 									</select>
-								</div>-->
+								</div>
 							</div>
 							<div class="row">
 								<div class="col s12">
@@ -56,7 +56,7 @@
 					</div>
 				</li>
 				<li class="disabled">
-					<div class="collapsible-header active #757575 grey darken-1" data-step="2"><i class="material-icons">event_note</i> ¿Cuándo? y ¿Qué Agenda OTC?</div>
+					<div class="collapsible-header active #757575 grey darken-1" data-step="2"><i class="material-icons">event_note</i> ¿Cuándo Agendas? y ¿Con Quién?</div>
 					<div class="collapsible-body">
 						<form name="formStep2" ng-submit="submitReserva(2)" novalidate>
 							<div class="row">
@@ -65,7 +65,7 @@
 									<input type="text" data-beatpicker="true" data-beatpicker-id="pickerFecha" data-beatpicker-position="['*','*']" data-beatpicker-format="['YYYY','MM','DD'],separator:'-'" data-beatpicker-module="clear,footer" name="fecha" id="fecha" placeholder="Seleccionar" class="default-browser" ng-model="form.fecha">
 								</div>
 								<div class="col s12 m6">
-									<label>Unidad Departamento</label>
+									<label>Seleccione Profesional:</label>
 									<select name="profesional" class="browser-default" ng-model="form.profesional" ng-change="resetHora()">
 										<option value="" selected>Seleccionar...</option>
 
@@ -84,10 +84,10 @@
 									<table ng-show="citas">
 										<thead>
 											<tr>
-											<th data-field="profesional">Unidad Departamento</th>
+											<th data-field="profesional">Profesionales disponibles:</th>
 												<th data-field="fecha">Fecha</th>
 												<th data-field="hora">Hora</th>
-												<th data-field="accion">Tomar</th>
+												<th data-field="accion">Agendar</th>
 											</tr>
 										</thead>
 
