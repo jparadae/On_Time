@@ -32,8 +32,8 @@ class Cliente(models.Model):
 	es_activo = models.BooleanField(default=True)
 
 	class Meta:
-		verbose_name = "Modulo"
-		verbose_name_plural = "Modulos"
+		verbose_name = "Establecimiento"
+		verbose_name_plural = "Establecimientos"
 
 	def __unicode__(self):
 		return self.nombre
@@ -43,7 +43,7 @@ class TipoProfesional(models.Model):
 
 	class Meta:
 		verbose_name = "Tipo de Subcategoria"
-		verbose_name_plural = "Tipos de Subcategorias"
+		verbose_name_plural = "Tipos de Progesionales"
 
 	def __unicode__(self):
 		return self.nombre
@@ -59,7 +59,7 @@ class Profesional(models.Model):
 
 	class Meta:
 		verbose_name = "Sub Categoria"
-		verbose_name_plural = "Sub Categorias"
+		verbose_name_plural = "Profesional"
 
 	def __unicode__(self):
 		return "%s %s (%s)" % (self.nombre, self.apellidos, self.rut)
