@@ -91,9 +91,19 @@
 						</ul>
 					</div>
 				{% else %}
-					<a href="{% url 'login' %}" class="waves-effect waves-light btn right" style="margin-top: 14px;"> Iniciar Sesión </a>
-				{% endif %}
-
+				<p>
+				<div class="col-md-2 ">
+					<a href="{% url 'login' %}" class="waves-effect waves-light btn right" style="margin-left: 10px;"><i class="material-icons">
+						person
+						</i> Ingreso Funcionarios </a>
+					</div>
+					<div class="col-md-2 ">
+					<a href="{% url 'login' %}" class="waves-effect waves-light btn right" style="margin-left: 10px;"><i class="material-icons">
+						vpn_key
+						</i> Iniciar con Clave Única </a>
+				</div></p>
+					{% endif %}
+				
 			</div>
 	<!--	</nav>-->
 	</div>

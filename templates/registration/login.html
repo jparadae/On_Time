@@ -9,7 +9,7 @@
 			<div class="alerta alerta-error">Su nombre de usuario o contraseña son incorrectos, por favor intente nuevamente.</div>
 			{% endif %}
 			<div class="col s12 m3 offset-m4 z-depth-1 login">
-				<h2><i class="material-icons left">person</i> Mi On Time Cloud <i class="material-icons right">expand_less</i></h2>
+				<h2><i class="material-icons left">person</i> Mi Agenda ACN <i class="material-icons right">expand_less</i></h2>
 				{% if user.is_authenticated %}
 					<h5>Bienvenid@, {{ user.username }}.</h5>
 					<a href="{% url 'logout' %}" class="waves-effect waves-light btn right"> Salir </a>
