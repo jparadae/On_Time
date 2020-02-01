@@ -1,31 +1,19 @@
 {% load staticfiles %}
-
-<!--<header class="header--featured row mt-4 mb-1 mx-4 d-none d-md-flex" role="banner">
-            <div class="col-3 col-lg-5">
-                <div class="row">
-                    <div class="col-12 col-lg-7 col-xl-5">
-             
-                    </div>
-
-                </div>
-
-            </div>
-
-            <div class="col-9 col-lg-7">
-                <div class="row pb-2">
-                    <div class="col-6"></div>
-
-                </div>
-
-            </div>
-
-        </header>-->
-
 <header>
 	<div class="navbar-fixed">
-		<!--<nav style="overflow: initial;">-->
-			<div class="nav-wrapper #769e33 light-green darken-2"> <!--color nav-->
-				<!--<a href="#" data-activates="mobile-demo" class="button-collapse right"><i class="material-icons">menu</i></a>-->
+		<nav style="overflow: initial;">
+			<div class="nav-wrapper"> <!--color nav-->
+
+				<a href="#!" class="brand-logo left"><img src="/static/images/hijo.svg"  style="position: relative;
+					top: -30px; 
+					margin-left: 5px;
+					width: 100px;
+					height: 80px;
+					border-radius: 50%;
+					margin: 0;
+					border:2px solid #faf9f900;
+					display: block;"></a>
+				<a href="#" data-activates="mobile-demo" class="button-collapse right"><i class="material-icons">menu</i></a>
 				<ul class="side-nav" id="mobile-demo">
 					<div class="no-paddidng">
 						{% if user.is_authenticated %}
@@ -34,11 +22,11 @@
 							<a class="dropdown-button waves-effect grey-text text-darken-4" style="line-height: 32px;">{{ user.first_name }}</a>
 						</div>
 						{% else %}
-							<!--<div class="col s12 social-buttons">
+							<div class="col s12 social-buttons">
 								<a href="{% url 'social:begin' 'facebook' %}?next={{ request.path }}" class="btn btn-block btn-social btn-facebook">
-									<span class="fa fa-facebook"></span> Iniciar Sesión con Facebook
+									<span class="fa fa-facebook"></span> Iniciar con Facebook
 								</a>
-							</div>-->
+							</div>
 						{% endif %}
 					</div>
 					<li class="no-padding">
@@ -92,23 +80,37 @@
 					</div>
 				{% else %}
 				<p>
-				<div class="col-md-2 ">
-					<a href="{% url 'login' %}" class="waves-effect waves-light btn right" style="margin-left: 10px;"><i class="material-icons">
-						person
-						</i> Ingreso Funcionarios </a>
+				<div class="col-md-2 " style="margin-left: 10px;">
+					<button type="button" class="btn btn-default; waves-effect waves-light btn right" style="margin-left: 10px;"><a href="{% url 'login' %}">Login Funcionarios </a></button>
 					</div>
 					<div class="col-md-2 ">
-					<a href="https://accounts.claveunica.gob.cl/accounts/login/?next=/openid/authorize%3Fclient_id%832965e3eecc4455a699579a6409a0fa%26redirect_uri%3Dhttps%253A%252F%252F190.114.254.133%252Flogin%252Fclaveunica%252Fcallback%26scope%3Dopenid%2Brun%2Bname%2Bemail%26response_type%3Dcode%26state%3DiYrcD0flqseCfbSaW2u5yyN1i3uOnmGmnra1qQBE" class="waves-effect waves-light btn right" style="margin-left: 10px;"><i class="material-icons">
-						vpn_key
-						</i> Iniciar con Clave Única </a>
+						<button type="button" class="btn btn-default; waves-effect waves-light btn right">
+					<a href="https://accounts.claveunica.gob.cl/accounts/login/?next=/openid/authorize%3Fclient_id%832965e3eecc4455a699579a6409a0fa%26redirect_uri%3Dhttps%253A%252F%252F190.114.254.133%252Flogin%252Fclaveunica%252Fcallback%26scope%3Dopenid%2Brun%2Bname%2Bemail%26response_type%3Dcode%26state%3DiYrcD0flqseCfbSaW2u5yyN1i3uOnmGmnra1qQBE">Login Clave Única 
+					</a></button>
 				</div></p>
+				
 					{% endif %}
 				
 			</div>
-	<!--	</nav>-->
+		</nav>
 	</div>
 	
 </header>
 
+<style>
+nav{
+background: rgb(214,39,23);
+background: 
+linear-gradient(90deg,
+ rgba(214,39,23,0.6727284663865547) 0%,
+ rgba(253,77,29,0.790375525210084) 50%,
+ rgba(252,155,69,0.9276304271708683) 100%);
 
+}	
+
+button{
+	background-image: linear-gradient(#bdc3c7 0%, #2c3e50 51%, #bdc3c7 100%);
+	
+}
+</style>
 
