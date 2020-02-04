@@ -11,7 +11,7 @@
         <div class="card-content">
           <i class="material-icons">assignment_ind</i>
         </div>
-        <div class="card-action waves-effect waves-block waves-light #f57c00 orange darken-2">
+        <div id="card1" class="card-action waves-effect waves-block waves-light">
           <a href="{% url 'reservar-cita' %}"><h5> Reservar en Agenda </h5></a>
         </div>
       </div>
@@ -27,7 +27,7 @@
         <div class="card-content">
           <i class="material-icons">chrome_reader_mode</i>
         </div>
-        <div class="card-action waves-effect waves-block waves-light #f57c00 orange darken-2">
+        <div id="card1" class="card-action waves-effect waves-block waves-light">
           <a href="{% url 'mis-citas' %}"><h5> Mis Horas Reservadas </h5></a>
         </div>
       </div>
@@ -44,10 +44,10 @@
 
    <ul class="collapsible popout">
      <li>
-   <!-- <div class="#7cb342 light-green darken-1"><span style="color:#FFFFFF";><h5 align="center">Documentación Requerida por Unidad de Departamento</h5></div>-->
+   <!-- <div class="s#7cb342 light-green darken-1"><span style="color:#FFFFFF";><h5 align="center">Documentación Requerida por Unidad de Departamento</h5></div>-->
     </li>
        <li>  
-         <div class="collapsible #f57c00 orange darken-2"><p></p>
+         <div id="card1" class="collapsible"><p></p>
              <span style="color:#FFFFFF" ;="">
                 <i class="material-icons">
                       where_to_vote
@@ -70,6 +70,16 @@
       height: 280px;
       box-shadow: 5px 5px 5px #888;
    }
+
+
+   #card1{
+background: 
+linear-gradient(90deg,
+ rgba(214,39,23,0.6727284663865547) 0%,
+ rgba(253,77,29,0.790375525210084) 50%,
+ rgba(252,155,69,0.9276304271708683) 100%);
+
+} 
   </style>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
