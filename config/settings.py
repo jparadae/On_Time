@@ -72,8 +72,8 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
 
                 # Python Social Auth Context Processors
-                #'social.apps.django_app.context_processors.backends',
-                #'social.apps.django_app.context_processors.login_redirect',
+                'social.apps.django_app.context_processors.backends',
+                'social.apps.django_app.context_processors.login_redirect',
             ],
         },
     },
@@ -94,7 +94,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'dacion_horas',
         'USER': 'postgres',
-        'PASSWORD': 'jparada1',
+        'PASSWORD': 'jparada',
         'HOST': 'localhost',
         'PORT': '5432',
     },
@@ -141,22 +141,22 @@ STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
-    '/var/www/agenda_v2/static/',
+    '/var/www/django/On_Time/static/',
 ]
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = '/var/www/agenda_v2/media'
+MEDIA_ROOT = '/var/www/django/On_Time/media'
 
 AUTHENTICATION_BACKENDS = (
     # Django
     'django.contrib.auth.backends.ModelBackend',
     # Facebook
-    #'social.backends.facebook.FacebookOAuth2',
+    'social.backends.facebook.FacebookOAuth2',
 )
 
-#SOCIAL_AUTH_FACEBOOK_KEY = '261720237542505'
-#SOCIAL_AUTH_FACEBOOK_SECRET = 'c2e107c2051b9a556a05f23e8ac32011'
-#SOCIAL_AUTH_LOGIN_REDIRECT_URL = "/login/"
+SOCIAL_AUTH_FACEBOOK_KEY = '2581803602039317'
+SOCIAL_AUTH_FACEBOOK_SECRET = 'd48c9d491e59d76b4fc523719e883488'
+SOCIAL_AUTH_LOGIN_REDIRECT_URL = "/login/"
 
 #REST_FRAMEWORK = {
 #    'DEFAULT_AUTHENTICATION_CLASSES': (
