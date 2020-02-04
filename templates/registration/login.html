@@ -6,10 +6,10 @@
 	<div class="row">
 		<div class="s12 m6 offset-m3 content-login">
 			{% if form.errors %}
-			<div class="alerta alerta-error">Su nombre de usuario o contraseña son incorrectos, por favor intente nuevamente.</div>
+			<div class="alerta alerta-error">Lo Sentimos: Su nombre de usuario o contraseña son incorrectos, intente nuevamente.</div>
 			{% endif %}
 			<div class="col s12 m3 offset-m4 z-depth-1 login">
-				<h2><i class="material-icons left">person</i> Mi On Time Cloud <i class="material-icons right">expand_less</i></h2>
+				<h2><i class="material-icons left">person</i> Mi Agenda <i class="material-icons right">expand_less</i></h2>
 				{% if user.is_authenticated %}
 					<h5>Bienvenid@, {{ user.username }}.</h5>
 					<a href="{% url 'logout' %}" class="waves-effect waves-light btn right"> Salir </a>
@@ -25,7 +25,7 @@
 				<div class="col s12 social-buttons no-padding" style="display:none;">
 					<span>Si no tiene cuenta puede iniciar con Facebook</span>
 					<a href="{% url 'social:begin' 'facebook' %}?next={{ request.path }}" class="btn btn-block btn-social btn-facebook">
-						<span class="fa fa-facebook"></span> Iniciar Sesión con Facebook
+						<span class="fa fa-facebook"></span> Iniciar con Facebook
 					</a>
 				</div>
 				{% endif %}
