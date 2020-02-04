@@ -94,7 +94,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'dacion_horas',
         'USER': 'postgres',
-        'PASSWORD': 'jparada1',
+        'PASSWORD': 'jparada',
         'HOST': 'localhost',
         'PORT': '5432',
     },
@@ -141,11 +141,11 @@ STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
-    '/var/www/agenda_v2/static/',
+    '/var/www/django/On_Time/static/',
 ]
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = '/var/www/agenda_v2/media'
+MEDIA_ROOT = '/var/www/django/On_Time/media'
 
 AUTHENTICATION_BACKENDS = (
     # Django
