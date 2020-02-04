@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    #'social.apps.django_app.default',
+    'social.apps.django_app.default',
     'import_export',
 
     'agenda',
@@ -72,8 +72,8 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
 
                 # Python Social Auth Context Processors
-                #'social.apps.django_app.context_processors.backends',
-                #'social.apps.django_app.context_processors.login_redirect',
+                'social.apps.django_app.context_processors.backends',
+                'social.apps.django_app.context_processors.login_redirect',
             ],
         },
     },
@@ -151,12 +151,12 @@ AUTHENTICATION_BACKENDS = (
     # Django
     'django.contrib.auth.backends.ModelBackend',
     # Facebook
-    #'social.backends.facebook.FacebookOAuth2',
+    'social.backends.facebook.FacebookOAuth2',
 )
 
-#SOCIAL_AUTH_FACEBOOK_KEY = '261720237542505'
-#SOCIAL_AUTH_FACEBOOK_SECRET = 'c2e107c2051b9a556a05f23e8ac32011'
-#SOCIAL_AUTH_LOGIN_REDIRECT_URL = "/login/"
+SOCIAL_AUTH_FACEBOOK_KEY = '2581803602039317'
+SOCIAL_AUTH_FACEBOOK_SECRET = 'd48c9d491e59d76b4fc523719e883488'
+SOCIAL_AUTH_LOGIN_REDIRECT_URL = "/login/"
 
 #REST_FRAMEWORK = {
 #    'DEFAULT_AUTHENTICATION_CLASSES': (
